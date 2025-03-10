@@ -1,0 +1,26 @@
+Below is the time schedule for our team project.
+We will communicate through Teams chat to address issues 
+such as bugs or new ideas and to check each member's progress whenever necessary.
+
+Deadline	Tasks and Plans								Assignee
+
+Mar 8 		Create a Github repository					Ken
+
+Mar 9 		Create development tasks & plans			Team
+
+Mar 10 		Submit a Github repository link on D2L		Nicole
+
+Mar 14		Identify core classes						Team
+
+Mar 28		Complete Core Classes						Team (Each member in charge of half the classes)
+
+Mar 31		Review by each member						Team
+
+Apr 4		Implement the  main method					
+			 & Complete Basic 2 User Game				Ken
+
+Apr 10		(Optional) Development an AI algorithm		Team
+
+Apr 12 		Make a presentation demo video				Team
+
+Apr 14		Uploaded a final video presentation demo	Ken
