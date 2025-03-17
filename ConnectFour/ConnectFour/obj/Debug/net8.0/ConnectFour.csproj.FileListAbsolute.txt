@@ -1,0 +1,15 @@
+C:\Users\kensu\Desktop\BVC\SODV1202\ConnectFour\ConnectFour\bin\Debug\net8.0\ConnectFour.exe
+C:\Users\kensu\Desktop\BVC\SODV1202\ConnectFour\ConnectFour\bin\Debug\net8.0\ConnectFour.deps.json
+C:\Users\kensu\Desktop\BVC\SODV1202\ConnectFour\ConnectFour\bin\Debug\net8.0\ConnectFour.runtimeconfig.json
+C:\Users\kensu\Desktop\BVC\SODV1202\ConnectFour\ConnectFour\bin\Debug\net8.0\ConnectFour.dll
+C:\Users\kensu\Desktop\BVC\SODV1202\ConnectFour\ConnectFour\bin\Debug\net8.0\ConnectFour.pdb
+C:\Users\kensu\Desktop\BVC\SODV1202\ConnectFour\ConnectFour\obj\Debug\net8.0\ConnectFour.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\kensu\Desktop\BVC\SODV1202\ConnectFour\ConnectFour\obj\Debug\net8.0\ConnectFour.AssemblyInfoInputs.cache
+C:\Users\kensu\Desktop\BVC\SODV1202\ConnectFour\ConnectFour\obj\Debug\net8.0\ConnectFour.AssemblyInfo.cs
+C:\Users\kensu\Desktop\BVC\SODV1202\ConnectFour\ConnectFour\obj\Debug\net8.0\ConnectFour.csproj.CoreCompileInputs.cache
+C:\Users\kensu\Desktop\BVC\SODV1202\ConnectFour\ConnectFour\obj\Debug\net8.0\ConnectFour.sourcelink.json
+C:\Users\kensu\Desktop\BVC\SODV1202\ConnectFour\ConnectFour\obj\Debug\net8.0\ConnectFour.dll
+C:\Users\kensu\Desktop\BVC\SODV1202\ConnectFour\ConnectFour\obj\Debug\net8.0\refint\ConnectFour.dll
+C:\Users\kensu\Desktop\BVC\SODV1202\ConnectFour\ConnectFour\obj\Debug\net8.0\ConnectFour.pdb
+C:\Users\kensu\Desktop\BVC\SODV1202\ConnectFour\ConnectFour\obj\Debug\net8.0\ConnectFour.genruntimeconfig.cache
+C:\Users\kensu\Desktop\BVC\SODV1202\ConnectFour\ConnectFour\obj\Debug\net8.0\ref\ConnectFour.dll
