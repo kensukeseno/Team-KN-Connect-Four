@@ -1,0 +1,5 @@
+.vs/ConnectFour
+ConnectFour.sln
+ConnectFour/bin/Debug/net8.0
+ConnectFour/obj
+ConnectFour/ConnectFour.csproj
