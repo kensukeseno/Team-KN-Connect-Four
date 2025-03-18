@@ -7,7 +7,8 @@
         public bool human { get; protected set; }
     }
 
-    public class HumanPlayer : Player {
+    public class HumanPlayer : Player
+    {
         public HumanPlayer(string name, char symbol)
         {
             Name = name;
@@ -21,7 +22,8 @@
         public char[,] board;
 
         // On initialization, create an empty board with 7 columns and 6 rows
-        public ConnectFourGame() {
+        public ConnectFourGame()
+        {
             board = new char[6, 7];
         }
 
@@ -32,34 +34,40 @@
             {
                 for (int col = 0; col < 7; col++)
                 {
+                    if (board[row, col] != symbol) continue;
+
                     // Check horizontally (right)
-                    if (col <= 7 - 4 && board[row, col] == symbol && 
-                        board[row, col + 1] == symbol && board[row, col] == symbol && 
-                        board[row, col + 2] == symbol && board[row, col] == symbol && board[row, col + 3] == symbol)
+                    if (col <= 3 &&
+                        board[row, col + 1] == symbol &&
+                        board[row, col + 2] == symbol &&
+                        board[row, col + 3] == symbol)
                     {
                         return true;
                     }
 
                     // Check vertically (down)
-                    if (row <= 6 - 4 && board[row, col] == symbol && 
-                        board[row + 1, col] == symbol && board[row, col] == symbol && 
-                        board[row + 2, col] == symbol && board[row, col] == symbol && board[row + 3, col] == symbol)
+                    if (row <= 2 &&
+                        board[row + 1, col] == symbol &&
+                        board[row + 2, col] == symbol &&
+                        board[row + 3, col] == symbol)
                     {
                         return true;
                     }
 
                     // Check diagonally (down-right)
-                    if (row <= 6 - 4 && col <= 7 - 4 && board[row, col] == symbol && 
-                        board[row + 1, col + 1] == symbol && board[row, col] == symbol && 
-                        board[row + 2, col + 2] == symbol && board[row, col] == symbol && board[row + 3, col + 3] == symbol)
+                    if (row <= 2 && col <= 3 &&
+                        board[row + 1, col + 1] == symbol &&
+                        board[row + 2, col + 2] == symbol &&
+                        board[row + 3, col + 3] == symbol)
                     {
                         return true;
                     }
 
                     // Check diagonally (down-left)
-                    if (row <= 6 - 4 && col >= 3 && board[row, col] == symbol && 
-                        board[row + 1, col - 1] == symbol && board[row, col] == symbol && 
-                        board[row + 2, col - 2] == symbol && board[row, col] == symbol && board[row + 3, col - 3] == symbol)
+                    if (row <= 2 && col >= 3 &&
+                        board[row + 1, col - 1] == symbol &&
+                        board[row + 2, col - 2] == symbol &&
+                        board[row + 3, col - 3] == symbol)
                     {
                         return true;
                     }
@@ -71,53 +79,30 @@
         // Check if the board is full
         public bool CheckBoardIsFull()
         {
-            if (board[5,0] != '\0' && board[5, 1] != '\0' && 
-                board[5, 2] != '\0' && board[5, 3] != '\0' && 
-                board[5, 4] != '\0' && board[5, 5] != '\0' && board[5, 6] != '\0')
+            for (int col = 0; col < 7; col++)
             {
-                return true;
+                if (board[5, col] == '\0') 
+                {
+                    return false; // if empty space found, no need to check further
+                }
             }
-            else
-            {
-                return false;
-            }
+            return true; // if loop completes, board is full
         }
 
-        // Add a dick in a column. If the column is full, return false
+        // Add a disk in a column. If the column is full, return false
+        // changed from if-else to "for" for more readability and efficiency 
         public bool AddDisk(int colNum, char symbol)
         {
-            // if the selected column is full, return false
-            if (board[5, colNum - 1] != '\0')
+            for (int row = 0; row < 6; row++) 
             {
-                return false;
-            } else {
-                if(board[0, colNum - 1] == '\0')
+                // if selected column is full, return false
+                if (board[row, colNum - 1] == '\0')
                 {
-                    board[0, colNum - 1] = symbol;
+                    board[row, colNum - 1] = symbol;
+                    return true;
                 }
-                else if (board[1, colNum - 1] == '\0')
-                {
-                    board[1, colNum - 1] = symbol;
-                }
-                else if (board[2, colNum - 1] == '\0')
-                {
-                    board[2, colNum - 1] = symbol;
-                }
-                else if (board[3, colNum - 1] == '\0')
-                {
-                    board[3, colNum - 1] = symbol;
-                }
-                else if (board[4, colNum - 1] == '\0')
-                {
-                    board[4, colNum - 1] = symbol;
-                }
-                else if (board[5, colNum - 1] == '\0')
-                {
-                    board[5, colNum - 1] = symbol;
-                }
-                return true;
             }
-            
+            return false; 
         }
     }
 
@@ -127,13 +112,14 @@
         {
             Console.WriteLine(msg);
         }
+
         // Accept a column number
         public int AcceptColNum()
         {
             do
             {
                 string input = Console.ReadLine();
-                // Check if the input is number
+                // Check if the input is a number
                 if (int.TryParse(input, out int colNum))
                 {
                     return colNum;
@@ -141,32 +127,43 @@
                 ShowMessageOnConsole("Enter a number");
             } while (true);
         }
+
         // Accept a player name
         public string AcceptPlayerName()
         {
             return Console.ReadLine();
         }
+
         // Display the current board
-        public void DiplayBoard(char[,] board)
+        public void DisplayBoard(char[,] board)
         {
-            for(int i = 0; i < 6; i++)
+            Console.SetCursorPosition(0, 0); // Keeps the board static
+
+            Console.WriteLine("\n  1  2  3  4  5  6  7"); 
+
+            for (int row = 5; row >= 0; row--)
             {
-                for(int j = 0; j < 7; j++)
+                Console.Write("|"); // Left border
+                for (int col = 0; col < 7; col++)
                 {
-                    if (board[5 - i, j] != '\0')
-                    {
-                        Console.Write(board[5 - i, j] + " ");
-                    }
-                    else
-                    {
-                        Console.Write("# ");
-                    }
+                    char piece = board[row, col] == '\0' ? '*' : board[row, col];
+
+                    if (piece == 'x')
+                        Console.ForegroundColor = ConsoleColor.Red; // Red for X
+                    else if (piece == 'o')
+                        Console.ForegroundColor = ConsoleColor.Yellow; // Yellow for O
+
+                    Console.Write($" {piece} ");
+                    Console.ResetColor(); // Reset console color
                 }
-                Console.WriteLine("");
+                Console.WriteLine("|"); // Right border
             }
+
+            Console.WriteLine("-----------------------"); // Bottom border
         }
     }
 
+    
     public class ConnectFourController
     {
         public Player[] players;
@@ -174,76 +171,75 @@
         public ConsoleCommunication communication;
         public int turn = -1;
 
-
         // Constructor. Initialize players, a game and a communication media
         public ConnectFourController()
+   
         {
             players = new Player[2];
             connectFourGame = new ConnectFourGame();
             communication = new ConsoleCommunication();
-            communication.ShowMessageOnConsole("Enter a player 1 name: ");
+
+            // Ask for player names first
+            communication.ShowMessageOnConsole("Enter player 1 name: ");
             players[0] = new HumanPlayer(communication.AcceptPlayerName(), 'x');
-            communication.ShowMessageOnConsole("Enter a player 2 name: ");
+
+            communication.ShowMessageOnConsole("Enter player 2 name: ");
             players[1] = new HumanPlayer(communication.AcceptPlayerName(), 'o');
+
+            Console.Clear(); // Clear previous text before showing the board
+            //text on top of the board
+            Console.WriteLine("CONNECT 4 GAME");
+           
+            // display board
+            communication.DisplayBoard(connectFourGame.board);
         }
+
 
         public void NextTurn()
         {
             turn = ++turn % 2;
             // Show the current board
-            communication.DiplayBoard(connectFourGame.board);
-            // Ask the next player for an input
-            communication.ShowMessageOnConsole($"{players[turn].Name}, choose a culomn.");
-            // Repeat until player enters a right culomn
+            communication.DisplayBoard(connectFourGame.board);
+
+            // Ask next player for input
+            communication.ShowMessageOnConsole($"\n{players[turn].Name}, choose a column from 1-7:");
+            // Repeat until player enters a right column
+            int colNum;
             do
             {
-                int colNum;
-                do
-                {
-                     colNum = communication.AcceptColNum();
-                    // Column number validation
-                    if (colNum >= 1 && colNum <= 7)
-                    {
-                        break;
-                    }
-                    communication.ShowMessageOnConsole("Enter a number between 1 and 7");
-                } while (true);
-
-
-                if(connectFourGame.AddDisk(colNum, players[turn].Symbol))
+                colNum = communication.AcceptColNum();
+                if (colNum >= 1 && colNum <= 7 && connectFourGame.AddDisk(colNum, players[turn].Symbol))
                 {
                     break;
                 }
-                communication.ShowMessageOnConsole("Enter a right input");
+                communication.ShowMessageOnConsole("Invalid or full column. Pick again."); //
             } while (true);
-        }
 
-        // Check if there is a connect four
+            communication.DisplayBoard(connectFourGame.board);
+
+            // ensure winning move is display before checking winner
+            if (CheckConnectFour())
+            {
+                communication.ShowMessageOnConsole($"\nWinner is {players[turn].Name}!\n");
+
+                return;
+            }
+
+            // Check if board is full to declare a draw
+            if (CheckBoardIsFull())
+            {
+                communication.ShowMessageOnConsole("\nDraw!\n");
+            }
+        }
+     
         public bool CheckConnectFour()
         {
-            if (connectFourGame.CheckConnection(players[turn].Symbol))
-            {
-                communication.ShowMessageOnConsole($"Winner is {players[turn].Name}");
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            return connectFourGame.CheckConnection(players[turn].Symbol);
         }
 
-        // Check if the board is full
         public bool CheckBoardIsFull()
         {
-            if (connectFourGame.CheckBoardIsFull())
-            {
-                communication.ShowMessageOnConsole("Draw");
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            return connectFourGame.CheckBoardIsFull();
         }
     }
 
@@ -251,23 +247,40 @@
     {
         static void Main(string[] args)
         {
-            // Initialize a game
-            ConnectFourController connectFourController = new ConnectFourController();
             do
             {
-                // Next player
-                connectFourController.NextTurn();
-                // Check the game status
-                if (connectFourController.CheckConnectFour())
+                // start a game
+                ConnectFourController connectFourController = new ConnectFourController();
+
+                do
                 {
-                    break;
-                };
-                // Check if the board is full
-                if (connectFourController.CheckBoardIsFull())
+                    connectFourController.NextTurn();
+
+                    if (connectFourController.CheckConnectFour())
+                    {
+                        break;
+                    }
+
+                    if (connectFourController.CheckBoardIsFull())
+                    {
+                        break;
+                    }
+
+                } while (true);
+               
+
+                // added option to restart the game after each match
+                Console.WriteLine("\nWould you like to play again? (Y/N)");
+                string input = Console.ReadLine().ToLower();
+
+                // if user chooses anything other than "y", exit the game
+                if (input != "y")
                 {
+                    Console.WriteLine("Thanks for playing!");
                     break;
                 }
-            }while(true);
+
+            } while (true);
         }
     }
 }

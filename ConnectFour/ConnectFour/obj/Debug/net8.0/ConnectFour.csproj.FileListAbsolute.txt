@@ -13,3 +13,18 @@ C:\Users\kensu\Desktop\BVC\SODV1202\ConnectFour\ConnectFour\obj\Debug\net8.0\ref
 C:\Users\kensu\Desktop\BVC\SODV1202\ConnectFour\ConnectFour\obj\Debug\net8.0\ConnectFour.pdb
 C:\Users\kensu\Desktop\BVC\SODV1202\ConnectFour\ConnectFour\obj\Debug\net8.0\ConnectFour.genruntimeconfig.cache
 C:\Users\kensu\Desktop\BVC\SODV1202\ConnectFour\ConnectFour\obj\Debug\net8.0\ref\ConnectFour.dll
+C:\Users\USER\Desktop\SODV1202-OOP\Final Project\Team-KN-Connect-Four\Team-KN-Connect-Four\ConnectFour\ConnectFour\bin\Debug\net8.0\ConnectFour.exe
+C:\Users\USER\Desktop\SODV1202-OOP\Final Project\Team-KN-Connect-Four\Team-KN-Connect-Four\ConnectFour\ConnectFour\bin\Debug\net8.0\ConnectFour.deps.json
+C:\Users\USER\Desktop\SODV1202-OOP\Final Project\Team-KN-Connect-Four\Team-KN-Connect-Four\ConnectFour\ConnectFour\bin\Debug\net8.0\ConnectFour.runtimeconfig.json
+C:\Users\USER\Desktop\SODV1202-OOP\Final Project\Team-KN-Connect-Four\Team-KN-Connect-Four\ConnectFour\ConnectFour\bin\Debug\net8.0\ConnectFour.dll
+C:\Users\USER\Desktop\SODV1202-OOP\Final Project\Team-KN-Connect-Four\Team-KN-Connect-Four\ConnectFour\ConnectFour\bin\Debug\net8.0\ConnectFour.pdb
+C:\Users\USER\Desktop\SODV1202-OOP\Final Project\Team-KN-Connect-Four\Team-KN-Connect-Four\ConnectFour\ConnectFour\obj\Debug\net8.0\ConnectFour.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\USER\Desktop\SODV1202-OOP\Final Project\Team-KN-Connect-Four\Team-KN-Connect-Four\ConnectFour\ConnectFour\obj\Debug\net8.0\ConnectFour.AssemblyInfoInputs.cache
+C:\Users\USER\Desktop\SODV1202-OOP\Final Project\Team-KN-Connect-Four\Team-KN-Connect-Four\ConnectFour\ConnectFour\obj\Debug\net8.0\ConnectFour.AssemblyInfo.cs
+C:\Users\USER\Desktop\SODV1202-OOP\Final Project\Team-KN-Connect-Four\Team-KN-Connect-Four\ConnectFour\ConnectFour\obj\Debug\net8.0\ConnectFour.csproj.CoreCompileInputs.cache
+C:\Users\USER\Desktop\SODV1202-OOP\Final Project\Team-KN-Connect-Four\Team-KN-Connect-Four\ConnectFour\ConnectFour\obj\Debug\net8.0\ConnectFour.sourcelink.json
+C:\Users\USER\Desktop\SODV1202-OOP\Final Project\Team-KN-Connect-Four\Team-KN-Connect-Four\ConnectFour\ConnectFour\obj\Debug\net8.0\ConnectFour.dll
+C:\Users\USER\Desktop\SODV1202-OOP\Final Project\Team-KN-Connect-Four\Team-KN-Connect-Four\ConnectFour\ConnectFour\obj\Debug\net8.0\refint\ConnectFour.dll
+C:\Users\USER\Desktop\SODV1202-OOP\Final Project\Team-KN-Connect-Four\Team-KN-Connect-Four\ConnectFour\ConnectFour\obj\Debug\net8.0\ConnectFour.pdb
+C:\Users\USER\Desktop\SODV1202-OOP\Final Project\Team-KN-Connect-Four\Team-KN-Connect-Four\ConnectFour\ConnectFour\obj\Debug\net8.0\ConnectFour.genruntimeconfig.cache
+C:\Users\USER\Desktop\SODV1202-OOP\Final Project\Team-KN-Connect-Four\Team-KN-Connect-Four\ConnectFour\ConnectFour\obj\Debug\net8.0\ref\ConnectFour.dll
