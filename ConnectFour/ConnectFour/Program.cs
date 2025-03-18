@@ -137,8 +137,9 @@
         // Display the current board
         public void DisplayBoard(char[,] board)
         {
-            Console.SetCursorPosition(0, 0); // Keeps the board static
-
+            // Console.SetCursorPosition(0, 0); // Keeps the board static
+            //text on top of the board
+            Console.WriteLine("CONNECT 4 GAME");
             Console.WriteLine("\n  1  2  3  4  5  6  7"); 
 
             for (int row = 5; row >= 0; row--)
@@ -161,6 +162,33 @@
 
             Console.WriteLine("-----------------------"); // Bottom border
         }
+
+        public void ClearScreen()
+        {
+            Console.Clear();
+        }
+
+        public bool Restart()
+        {
+            do
+            {
+                Console.WriteLine("Would you like to play again? (Y/N)");
+                string input = Console.ReadLine().ToLower();
+                // if user chooses anything other than "y", exit the game
+                if (input == "y")
+                {
+                    return true;
+                }
+                else if (input == "n")
+                {
+                    return false;
+                }
+                else
+                {
+                    Console.WriteLine("Invalid input!");
+                }
+            } while (true);
+        }
     }
 
     
@@ -179,6 +207,8 @@
             connectFourGame = new ConnectFourGame();
             communication = new ConsoleCommunication();
 
+            // Clear the screen
+            communication.ClearScreen();
             // Ask for player names first
             communication.ShowMessageOnConsole("Enter player 1 name: ");
             players[0] = new HumanPlayer(communication.AcceptPlayerName(), 'x');
@@ -186,7 +216,7 @@
             communication.ShowMessageOnConsole("Enter player 2 name: ");
             players[1] = new HumanPlayer(communication.AcceptPlayerName(), 'o');
 
-            Console.Clear(); // Clear previous text before showing the board
+            communication.ClearScreen(); // Clear previous text before showing the board
             //text on top of the board
             Console.WriteLine("CONNECT 4 GAME");
            
@@ -198,6 +228,8 @@
         public void NextTurn()
         {
             turn = ++turn % 2;
+            // Clear the screen
+            communication.ClearScreen();
             // Show the current board
             communication.DisplayBoard(connectFourGame.board);
 
@@ -212,9 +244,11 @@
                 {
                     break;
                 }
-                communication.ShowMessageOnConsole("Invalid or full column. Pick again."); //
+                communication.ShowMessageOnConsole("Invalid or full column. Pick again.");
             } while (true);
 
+            // Clear the screen
+            communication.ClearScreen();
             communication.DisplayBoard(connectFourGame.board);
 
             // ensure winning move is display before checking winner
@@ -240,6 +274,20 @@
         public bool CheckBoardIsFull()
         {
             return connectFourGame.CheckBoardIsFull();
+        }
+
+        // Check if players want a next game 
+        public bool Restart()
+        {
+            if (communication.Restart())
+            {
+                return true;
+            }
+            else
+            {
+                communication.ShowMessageOnConsole("Thanks for playing!");
+                return false;
+            }
         }
     }
 
@@ -267,16 +315,10 @@
                     }
 
                 } while (true);
-               
 
-                // added option to restart the game after each match
-                Console.WriteLine("\nWould you like to play again? (Y/N)");
-                string input = Console.ReadLine().ToLower();
 
-                // if user chooses anything other than "y", exit the game
-                if (input != "y")
+                if (!connectFourController.Restart())
                 {
-                    Console.WriteLine("Thanks for playing!");
                     break;
                 }
 
