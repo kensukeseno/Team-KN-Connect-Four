@@ -169,7 +169,7 @@ namespace ConnectFour
         // Accept a player name
         public string AcceptPlayerName()
         {
-            return Console.ReadLine();
+            return Console.ReadLine().Trim();
         }
 
         // Display the current board
