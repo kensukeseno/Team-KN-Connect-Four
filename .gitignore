@@ -1,5 +1,5 @@
-ConnectFour/.vs/
+ConnectFour/.vs/**
 ConnectFour/ConnectFour.sln
-ConnectFour/ConnectFour/bin/
-ConnectFour/ConnectFour/obj
+ConnectFour/ConnectFour/bin/**
+ConnectFour/ConnectFour/obj/**
 ConnectFour/ConnectFour/ConnectFour.csproj

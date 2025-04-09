@@ -264,7 +264,7 @@ namespace ConnectFour
         public Player[] Players;
         public ConnectFourGame ConnectFourGame;
         public Communication Communication;
-        public int Turn = -1;
+        public int Turn;
         public int Mode { get; set; }
 
         // Constructor. Initialize players, a game and a communication media
@@ -288,7 +288,7 @@ namespace ConnectFour
             if(Mode == 1)
             {
                 // Ask for human player name
-                Communication.DisplayMessage("Enter player 1 name: ");
+                Communication.DisplayMessage("Enter player name: ");
                 Players[0] = new HumanPlayer(Communication.AcceptPlayerName(), 'x');
 
                 // Create an AI player
@@ -308,6 +308,10 @@ namespace ConnectFour
 
             // display board
             Communication.DisplayBoard(ConnectFourGame.Board);
+
+            // Decide who's turn is the first
+            Random r = new Random();
+            Turn = r.Next() % 2;
         }
 
         public void NextTurn()
