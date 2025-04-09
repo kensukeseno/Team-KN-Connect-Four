@@ -6,7 +6,7 @@ namespace ConnectFour
     {
         public string Name { get; protected set; }
         public char Symbol { get; protected set; }
-        public bool Human { get; protected set; }
+        public abstract int SelectColumn(Communication communication);
     }
 
     public class HumanPlayer : Player
@@ -15,7 +15,31 @@ namespace ConnectFour
         {
             Name = name;
             Symbol = symbol;
-            Human = true;
+        }
+        public override int SelectColumn(Communication communication)
+        {
+            return communication.AcceptColNum();
+        }
+    }
+
+    public class AIPlayer : Player
+    {
+        public AIPlayer(char symbol)
+        {
+            Name = "AI player";
+            Symbol = symbol;
+        }
+        public override int SelectColumn(Communication communication)
+        {
+            // generate a random number from 1 to 7
+            int num;
+            Random r = new Random();
+            num = r.Next() % 7 + 1;
+
+            communication.DisplayMessage($"{Name} selected column {num}.");
+            // pause for a second
+            Thread.Sleep(1000);
+            return num;
         }
     }
 
@@ -116,6 +140,7 @@ namespace ConnectFour
         void DisplayBoard(char[,] board);
         void ClearScreen();
         bool AskToRestartGame();
+        int AskMode();
     }
 
     // Console implementation of the interface
@@ -202,6 +227,35 @@ namespace ConnectFour
                 }
             } while (true);
         }
+
+        public int AskMode() 
+        {
+            do
+            {
+                try {
+                    Console.WriteLine("How many players are playing? (1 or 2)");
+                    int input = int.Parse(Console.ReadLine());
+                    // if user chooses anything other than "y", exit the game
+                    if (input == 1)
+                    {
+                        return 1;
+                    }
+                    else if (input == 2)
+                    {
+                        return 2;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Invalid input!");
+                    }
+                }
+                catch
+                {
+                    Console.WriteLine("Invalid input!");
+                }
+            } while (true);
+
+        }
     }
 
 
@@ -211,32 +265,50 @@ namespace ConnectFour
         public ConnectFourGame ConnectFourGame;
         public Communication Communication;
         public int Turn = -1;
+        public int Mode { get; set; }
 
         // Constructor. Initialize players, a game and a communication media
         public ConnectFourController()
 
         {
+            // Ask a mode of the game
+            /*int mode = Communication.AskMode();*/
+
+            // Initialize a game
             Players = new Player[2];
             ConnectFourGame = new ConnectFourGame();
             Communication = new ConsoleCommunication();
 
             // Clear the screen
             Communication.ClearScreen();
-            // Ask for player names first
-            Communication.DisplayMessage("Enter player 1 name: ");
-            Players[0] = new HumanPlayer(Communication.AcceptPlayerName(), 'x');
 
-            Communication.DisplayMessage("Enter player 2 name: ");
-            Players[1] = new HumanPlayer(Communication.AcceptPlayerName(), 'o');
+            // ask for either 1 player mode or 2 plyaers mode to play
+            Mode = Communication.AskMode();
+
+            if(Mode == 1)
+            {
+                // Ask for human player name
+                Communication.DisplayMessage("Enter player 1 name: ");
+                Players[0] = new HumanPlayer(Communication.AcceptPlayerName(), 'x');
+
+                // Create an AI player
+                Players[1] = new AIPlayer('o');
+            }
+            else
+            {
+                // Ask for player names
+                Communication.DisplayMessage("Enter player 1 name: ");
+                Players[0] = new HumanPlayer(Communication.AcceptPlayerName(), 'x');
+
+                Communication.DisplayMessage("Enter player 2 name: ");
+                Players[1] = new HumanPlayer(Communication.AcceptPlayerName(), 'o');
+            }
 
             Communication.ClearScreen(); // Clear previous text before showing the board
-            //text on top of the board
-            Console.WriteLine("CONNECT 4 GAME");
 
             // display board
             Communication.DisplayBoard(ConnectFourGame.Board);
         }
-
 
         public void NextTurn()
         {
@@ -252,7 +324,7 @@ namespace ConnectFour
             int colNum;
             do
             {
-                colNum = Communication.AcceptColNum();
+                colNum = Players[Turn].SelectColumn(Communication);
                 if (colNum >= 1 && colNum <= 7 && ConnectFourGame.AddDisk(colNum, Players[Turn].Symbol))
                 {
                     break;
