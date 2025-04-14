@@ -24,6 +24,8 @@ namespace ConnectFour
 
     public class AIPlayer : Player
     {
+        private static Random _random = new Random();
+        private int colNum;
         public AIPlayer(char symbol)
         {
             Name = "AI player";
@@ -32,25 +34,24 @@ namespace ConnectFour
         public override int SelectColumn(ICommunication communication)
         {
             // generate a random number from 1 to 7
-            int num;
-            Random r = new Random();
-            num = r.Next() % 7 + 1;
+            colNum = _random.Next() % 7 + 1;
 
-            communication.DisplayMessage($"{Name} selected column {num}.");
+            communication.DisplayMessage($"{Name} selected column {colNum}.");
             // pause for a second
             Thread.Sleep(1000);
-            return num;
+            return colNum;
         }
     }
 
     public class ConnectFourGame
     {
-        public char[,] Board;
-
+        public char[,] Board { private set; get; }
+        private const int Rows = 6;
+        private const int Columns = 7;
         // On initialization, create an empty board with 7 columns and 6 rows
         public ConnectFourGame()
         {
-            Board = new char[6, 7];
+            Board = new char[Rows, Columns];
         }
 
         // Check if there are 4 discs of their symbol/color in a row
@@ -261,19 +262,16 @@ namespace ConnectFour
 
     public class ConnectFourController
     {
-        public Player[] Players;
-        public ConnectFourGame ConnectFourGame;
-        public ICommunication Communication;
-        public int Turn;
-        public int Mode { get; set; }
+        private Player[] Players;
+        private ConnectFourGame ConnectFourGame;
+        private ICommunication Communication;
+        private int Turn;
+        private int Mode;
 
         // Constructor. Initialize players, a game and a communication media
         public ConnectFourController()
 
         {
-            // Ask a mode of the game
-            /*int mode = ICommunication.AskMode();*/
-
             // Initialize a game
             Players = new Player[2];
             ConnectFourGame = new ConnectFourGame();
