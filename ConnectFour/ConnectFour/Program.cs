@@ -6,7 +6,7 @@ namespace ConnectFour
     {
         public string Name { get; protected set; }
         public char Symbol { get; protected set; }
-        public abstract int SelectColumn(Communication communication);
+        public abstract int SelectColumn(ICommunication communication);
     }
 
     public class HumanPlayer : Player
@@ -16,7 +16,7 @@ namespace ConnectFour
             Name = name;
             Symbol = symbol;
         }
-        public override int SelectColumn(Communication communication)
+        public override int SelectColumn(ICommunication communication)
         {
             return communication.AcceptColNum();
         }
@@ -29,7 +29,7 @@ namespace ConnectFour
             Name = "AI player";
             Symbol = symbol;
         }
-        public override int SelectColumn(Communication communication)
+        public override int SelectColumn(ICommunication communication)
         {
             // generate a random number from 1 to 7
             int num;
@@ -132,7 +132,7 @@ namespace ConnectFour
     }
 
     // Define an interface for communication
-    public interface Communication
+    public interface ICommunication
     {
         void DisplayMessage(string message);
         int AcceptColNum();
@@ -144,7 +144,7 @@ namespace ConnectFour
     }
 
     // Console implementation of the interface
-    public class ConsoleCommunication : Communication
+    public class ConsoleCommunication : ICommunication
     {
         public void DisplayMessage(string msg)
         {
@@ -263,7 +263,7 @@ namespace ConnectFour
     {
         public Player[] Players;
         public ConnectFourGame ConnectFourGame;
-        public Communication Communication;
+        public ICommunication Communication;
         public int Turn;
         public int Mode { get; set; }
 
@@ -272,7 +272,7 @@ namespace ConnectFour
 
         {
             // Ask a mode of the game
-            /*int mode = Communication.AskMode();*/
+            /*int mode = ICommunication.AskMode();*/
 
             // Initialize a game
             Players = new Player[2];
