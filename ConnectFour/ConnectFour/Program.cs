@@ -138,6 +138,8 @@ namespace ConnectFour
         void DisplayMessage(string message);
         int AcceptColNum();
         string AcceptPlayerName();
+        // Used for receiving the second player's name
+        string AcceptPlayerName(string p1Nmae);
         void DisplayBoard(char[,] board);
         void ClearScreen();
         bool AskToRestartGame();
@@ -170,7 +172,37 @@ namespace ConnectFour
         // Accept a player name
         public string AcceptPlayerName()
         {
-            return Console.ReadLine().Trim();
+            // Loop until a valid name is input
+            string name;
+            do
+            {
+                name = Console.ReadLine().Trim();
+                if (name != "")
+                {
+                    break;
+                }
+                Console.WriteLine("Name cannot be empty! Try again.");
+            } while (true);
+            return name;
+        }
+        // Accept a second player name
+        public string AcceptPlayerName(string p1Nmae)
+        {
+            // Loop until a valid name is input
+            string name;
+            do
+            {
+                // Basic validation
+                name = AcceptPlayerName();
+                if(name == p1Nmae)
+                {
+                    Console.WriteLine("The name is taken! Try again.");
+                    continue;
+                }
+                break;
+                
+            } while (true);
+            return name;
         }
 
         // Display the current board
@@ -291,6 +323,10 @@ namespace ConnectFour
 
                 // Create an AI player
                 Players[1] = new AIPlayer('o');
+
+                // Decide who's turn is the first
+                Random r = new Random();
+                Turn = r.Next() % 2;
             }
             else
             {
@@ -299,7 +335,10 @@ namespace ConnectFour
                 Players[0] = new HumanPlayer(Communication.AcceptPlayerName(), 'x');
 
                 Communication.DisplayMessage("Enter player 2 name: ");
-                Players[1] = new HumanPlayer(Communication.AcceptPlayerName(), 'o');
+                Players[1] = new HumanPlayer(Communication.AcceptPlayerName(Players[0].Name), 'o');
+
+                // In 2-players mode, player 1 starts first
+                Turn = -1;
             }
 
             Communication.ClearScreen(); // Clear previous text before showing the board
@@ -307,9 +346,6 @@ namespace ConnectFour
             // display board
             Communication.DisplayBoard(ConnectFourGame.Board);
 
-            // Decide who's turn is the first
-            Random r = new Random();
-            Turn = r.Next() % 2;
         }
 
         public void NextTurn()
