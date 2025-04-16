@@ -1,9 +1,9 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\kensu\\Desktop\\BVC\\SODV1202\\final project\\Tean-KN-Connect-Four\\ConnectFour\\",
+  "WorkspaceRootPath": "C:\\Users\\USER\\Desktop\\SODV1202-OOP\\Final Project\\Team-KN-Connect-Four\\Team-KN-Connect-Four\\ConnectFour\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{A2A87DBE-8961-4E33-9E2A-98247C787FC4}|ConnectFour\\ConnectFour.csproj|c:\\users\\kensu\\desktop\\bvc\\sodv1202\\final project\\tean-kn-connect-four\\connectfour\\connectfour\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{A2A87DBE-8961-4E33-9E2A-98247C787FC4}|ConnectFour\\ConnectFour.csproj|c:\\users\\user\\desktop\\sodv1202-oop\\final project\\team-kn-connect-four\\team-kn-connect-four\\connectfour\\connectfour\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A2A87DBE-8961-4E33-9E2A-98247C787FC4}|ConnectFour\\ConnectFour.csproj|solutionrelative:connectfour\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
@@ -20,11 +20,11 @@
               "$type": "Document",
               "DocumentIndex": 0,
               "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\kensu\\Desktop\\BVC\\SODV1202\\final project\\Tean-KN-Connect-Four\\ConnectFour\\ConnectFour\\Program.cs",
+              "DocumentMoniker": "C:\\Users\\USER\\Desktop\\SODV1202-OOP\\Final Project\\Team-KN-Connect-Four\\Team-KN-Connect-Four\\ConnectFour\\ConnectFour\\Program.cs",
               "RelativeDocumentMoniker": "ConnectFour\\Program.cs",
-              "ToolTip": "C:\\Users\\kensu\\Desktop\\BVC\\SODV1202\\final project\\Tean-KN-Connect-Four\\ConnectFour\\ConnectFour\\Program.cs",
+              "ToolTip": "C:\\Users\\USER\\Desktop\\SODV1202-OOP\\Final Project\\Team-KN-Connect-Four\\Team-KN-Connect-Four\\ConnectFour\\ConnectFour\\Program.cs",
               "RelativeToolTip": "ConnectFour\\Program.cs",
-              "ViewState": "AQIAALIAAAAAAAAAAAASwMIAAAAmAAAA",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAABHAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-03-11T16:58:40.022Z",
               "EditorCaption": ""

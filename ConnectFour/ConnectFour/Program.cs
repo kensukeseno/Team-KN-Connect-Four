@@ -7,6 +7,10 @@ namespace ConnectFour
         public string Name { get; protected set; }
         public char Symbol { get; protected set; }
         public abstract int SelectColumn(ICommunication communication);
+        public virtual void CelebrateWin() //  Virtual method added
+        {
+            Console.WriteLine($"{Name} wins!");
+        }
     }
 
     public class HumanPlayer : Player
@@ -19,6 +23,10 @@ namespace ConnectFour
         public override int SelectColumn(ICommunication communication)
         {
             return communication.AcceptColNum();
+        }
+        public override void CelebrateWin() // Override with custom message
+        {
+            Console.WriteLine($"Congratulations {Name}! You are the Connect Four Champion!");
         }
     }
 
@@ -37,9 +45,13 @@ namespace ConnectFour
             colNum = _random.Next() % 7 + 1;
 
             communication.DisplayMessage($"{Name} selected column {colNum}.");
-            // pause for a second
-            Thread.Sleep(1000);
+            // pause for a 2 seconds
+            Thread.Sleep(2000);
             return colNum;
+        }
+        public override void CelebrateWin() //  Override with custom message
+        {
+            Console.WriteLine($" {Name} wins! Better luck next time!");
         }
     }
 
@@ -375,12 +387,13 @@ namespace ConnectFour
             Communication.DisplayBoard(ConnectFourGame.Board);
 
             // ensure winning move is display before checking winner
+           
             if (CheckConnectFour())
             {
-                Communication.DisplayMessage($"\nWinner is {Players[Turn].Name}!\n");
-
+                Players[Turn].CelebrateWin(); // Call overridden method
                 return;
             }
+
 
             // Check if board is full to declare a draw
             if (CheckBoardIsFull())
