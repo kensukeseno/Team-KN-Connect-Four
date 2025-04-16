@@ -7,9 +7,9 @@ namespace ConnectFour
         public string Name { get; protected set; }
         public char Symbol { get; protected set; }
         public abstract int SelectColumn(ICommunication communication);
-        public virtual void CelebrateWin() //  Virtual method added
+        public virtual void CelebrateWin(ICommunication communication)
         {
-            Console.WriteLine($"{Name} wins!");
+            communication.DisplayMessage($"{Name} wins!");
         }
     }
 
@@ -24,9 +24,10 @@ namespace ConnectFour
         {
             return communication.AcceptColNum();
         }
-        public override void CelebrateWin() // Override with custom message
+        // Override with custom message
+        public override void CelebrateWin(ICommunication communication)
         {
-            Console.WriteLine($"Congratulations {Name}! You are the Connect Four Champion!");
+            communication.DisplayMessage($"Congratulations {Name}! You are the Connect Four Champion!");
         }
     }
 
@@ -49,9 +50,10 @@ namespace ConnectFour
             Thread.Sleep(2000);
             return colNum;
         }
-        public override void CelebrateWin() //  Override with custom message
+        //  Override with custom message
+        public override void CelebrateWin(ICommunication communication)
         {
-            Console.WriteLine($" {Name} wins! Better luck next time!");
+            communication.DisplayMessage($"{Name} wins! Better luck next time!");
         }
     }
 
@@ -384,16 +386,14 @@ namespace ConnectFour
 
             // Clear the screen
             Communication.ClearScreen();
+            // ensure winning move is display before checking winner
             Communication.DisplayBoard(ConnectFourGame.Board);
 
-            // ensure winning move is display before checking winner
-           
             if (CheckConnectFour())
             {
-                Players[Turn].CelebrateWin(); // Call overridden method
+                Players[Turn].CelebrateWin(Communication); // Call overridden method
                 return;
             }
-
 
             // Check if board is full to declare a draw
             if (CheckBoardIsFull())
